@@ -1,27 +1,50 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/ushachev/rails-project-63/workflows/hexlet-check/badge.svg)](https://github.com/ushachev/rails-project-63/actions)
+[![CI](https://github.com/ushachev/rails-project-63/actions/workflows/main.yml/badge.svg)](https://github.com/ushachev/rails-project-63/actions/workflows/main.yml)
 
 # HexletCode
 
-TODO: Delete this and the text below, and describe your gem
+The form generator is a library with which it is convenient to create forms in site templates.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hexlet_code`. To experiment with that code, run `bin/console` for an interactive prompt.
+### Requirements
+
+- Ruby 3.2.2
+- Make
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add ipgeobase --github=https://github.com/ushachev/rails-project-63.git
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ gem install specific_install
+    $ gem specific_install https://github.com/ushachev/rails-project-63.git
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+User = Struct.new(:id, :name, :job)
+
+user = User.new
+
+html = HexletCode.form_for user, url: '/users' do |f|
+  f.input :name
+  f.input :job, as: :text
+  f.submit
+end
+
+puts html
+
+# <form action="/users" method="post">
+#   <label for="name">Name</label>
+#   <input name="name" value="" type="text">
+#   <label for="job">Job</label>
+#   <textarea cols="20" rows="40" name="job"></textarea>
+#   <input type="submit" value="Create">
+# </form>
+```
 
 ## Development
 
@@ -31,7 +54,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hexlet_code.
+Bug reports and pull requests are welcome on GitHub at https://github.com/ushachev/rails-project-63.
 
 ## License
 
