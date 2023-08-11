@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module HexletCode
-  class Tag
+  module Tag
     def self.build(name, attributes = {})
       attributes_line = attributes.map { |attribute, value| %( #{attribute}="#{value}") }.join
 

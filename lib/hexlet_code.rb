@@ -4,11 +4,13 @@ require_relative 'hexlet_code/version'
 
 module HexletCode
   autoload :Tag, 'hexlet_code/tag'
+  autoload :FormBuilder, 'hexlet_code/form_builder'
 
-  def self.form_for(_model, attributes = {})
-    action = attributes.fetch(:url, '#')
-    method = attributes.fetch(:method, 'post')
+  def self.form_for(model, attributes = {})
+    form_builder = FormBuilder.new(model, attributes)
 
-    Tag.build 'form', action:, method:
+    yield form_builder if block_given?
+
+    form_builder.to_html
   end
 end
