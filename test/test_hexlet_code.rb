@@ -11,21 +11,19 @@ class TestHexletCode < Minitest::Test
 
   def test_empty_form_with_default_attributes_is_generated
     user = User.new name: 'Rob'
-    expected = '<form action="#" method="post"></form>'
     actual = HexletCode.form_for user do |_f|
       'nothing'
     end
 
-    assert_equal expected, actual
+    assert_equal load_fixture('empty_default_form.html'), actual
   end
 
   def test_empty_form_is_generated
     user = User.new name: 'Rob'
-    expected = '<form action="/users" method="post"></form>'
     actual = HexletCode.form_for user, url: '/users' do |_f|
       'nothing'
     end
 
-    assert_equal expected, actual
+    assert_equal load_fixture('empty_form.html'), actual
   end
 end
