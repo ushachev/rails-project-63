@@ -8,15 +8,15 @@ module HexletCode
       @components = []
     end
 
-    # def input(field, attributes = {})
-
-    # end
+    def input(name, attributes = {})
+      value = @model.public_send(name) || ''
+      @components << { tag: 'input', name:, type: 'text', value: }.merge(attributes)
+    end
 
     def to_html
       Tag.build 'form', @attributes do
-        @components.map do |component|
-
-        end.join  
+        tags = @components.map { |component| Tag.build component[:tag], component.except(:tag) }
+        tags.prepend('').join("\n  ") << "\n" if @components.any?
       end
     end
   end

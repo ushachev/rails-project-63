@@ -26,4 +26,24 @@ class TestHexletCode < Minitest::Test
 
     assert_equal load_fixture('empty_form.html'), actual
   end
+
+  def test_default_form_is_generated
+    user = User.new name: 'Rob', job: 'Hexlet'
+    actual = HexletCode.form_for user, url: '/users' do |f|
+      f.input :name, class: 'user-input'
+      f.input :job
+    end
+
+    assert_equal load_fixture('default_form.html'), actual
+  end
+
+  def test_error_is_raised_for_absent_field
+    user = User.new name: 'Rob'
+    assert_raises NoMethodError do
+      HexletCode.form_for user do |f|
+        f.input :name
+        f.input :age
+      end
+    end
+  end
 end
