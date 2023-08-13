@@ -3,6 +3,7 @@
 require 'active_support/inflector'
 
 module HexletCode
+  autoload :Base, 'hexlet_code/components/base'
   autoload :Input, 'hexlet_code/components/input'
   autoload :Text, 'hexlet_code/components/text'
 

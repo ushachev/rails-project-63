@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
 module HexletCode
-  class Text
-    def initialize(name:, value:, **attributes)
-      defaults_attributes = { cols: 20, rows: 40 }
-      @name = name
-      @value = value
-      @attributes = defaults_attributes.merge attributes
+  class Text < Base
+    def default_attributes
+      { cols: 20, rows: 40 }
     end
 
     def to_html
