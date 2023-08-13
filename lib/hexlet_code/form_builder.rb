@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require 'active_support/inflector'
+
 module HexletCode
+  autoload :Input, 'hexlet_code/components/input'
+
   class FormBuilder
     def initialize(model, attributes)
       @model = model
@@ -10,12 +14,14 @@ module HexletCode
 
     def input(name, attributes = {})
       value = @model.public_send(name) || ''
-      @components << { tag: 'input', name:, type: 'text', value: }.merge(attributes)
+      tag = attributes.fetch(:as, :input)
+      tag_class = "HexletCode::#{tag.to_s.capitalize}".constantize
+      @components << tag_class.new(name:, value:, **attributes.except(:as))
     end
 
     def to_html
       Tag.build 'form', @attributes do
-        tags = @components.map { |component| Tag.build component[:tag], component.except(:tag) }
+        tags = @components.map(&:to_html)
         tags.prepend('').join("\n  ") << "\n" if @components.any?
       end
     end
