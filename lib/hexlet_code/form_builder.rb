@@ -4,6 +4,7 @@ require 'active_support/inflector'
 
 module HexletCode
   autoload :Input, 'hexlet_code/components/input'
+  autoload :Text, 'hexlet_code/components/text'
 
   class FormBuilder
     def initialize(model, attributes)
