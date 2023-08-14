@@ -6,8 +6,17 @@ module HexletCode
       { cols: 20, rows: 40 }
     end
 
-    def to_html
-      Tag.build('textarea', name: @name, **@attributes) { @value }
+    def single?
+      false
+    end
+
+    def data
+      {
+        html_name: 'textarea',
+        name: @name,
+        value: @value,
+        **@attributes
+      }
     end
   end
 end

@@ -12,7 +12,11 @@ module HexletCode
       raise NotImplementedError
     end
 
-    def to_html
+    def single?
+      raise NotImplementedError
+    end
+
+    def data
       raise NotImplementedError
     end
   end

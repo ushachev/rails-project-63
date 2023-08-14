@@ -21,11 +21,8 @@ module HexletCode
       @components << tag_class.new(name:, value:, **attributes.except(:as))
     end
 
-    def to_html
-      Tag.build 'form', @attributes do
-        tags = @components.map(&:to_html)
-        tags.prepend('').join("\n  ") << "\n" if @components.any?
-      end
+    def data
+      { attributes: @attributes, components: @components }
     end
   end
 end

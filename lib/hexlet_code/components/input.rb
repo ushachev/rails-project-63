@@ -6,11 +6,18 @@ module HexletCode
       { type: 'text' }
     end
 
-    def to_html
-      Tag.build 'input', name: @name,
-                         type: @attributes[:type],
-                         value: @value,
-                         **@attributes.except(:type)
+    def single?
+      true
+    end
+
+    def data
+      {
+        html_name: 'input',
+        name: @name,
+        type: @attributes[:type],
+        value: @value,
+        **@attributes.except(:type)
+      }
     end
   end
 end
