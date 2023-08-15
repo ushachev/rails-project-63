@@ -42,6 +42,7 @@ class TestHexletCode < Minitest::Test
     actual = HexletCode.form_for user, url: '/users' do |f|
       f.input :name, class: 'user-input'
       f.input :job
+      f.submit
     end
 
     assert_equal load_fixture('default_form.html'), actual
@@ -52,6 +53,7 @@ class TestHexletCode < Minitest::Test
     actual = HexletCode.form_for user, url: '/users' do |f|
       f.input :name
       f.input :job, as: :text
+      f.submit
     end
 
     assert_equal load_fixture('form_with_different_inputs.html'), actual
@@ -62,6 +64,7 @@ class TestHexletCode < Minitest::Test
     actual = HexletCode.form_for user, url: '/users' do |f|
       f.input :name
       f.input :job, as: :text, rows: 50, cols: 50
+      f.submit 'Wow'
     end
 
     assert_equal load_fixture('form_with_custom_input_attrs.html'), actual

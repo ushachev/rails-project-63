@@ -21,6 +21,10 @@ module HexletCode
       @components << tag_class.new(name:, value:, **attributes.except(:as))
     end
 
+    def submit(value = 'Save', attributes = {})
+      @components << Input.new(name: nil, value:, **attributes.merge({ type: 'submit' }))
+    end
+
     def data
       { attributes: @attributes, components: @components }
     end

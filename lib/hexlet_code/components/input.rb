@@ -17,7 +17,7 @@ module HexletCode
         type: @attributes[:type],
         value: @value,
         **@attributes.except(:type)
-      }
+      }.compact
     end
   end
 end
