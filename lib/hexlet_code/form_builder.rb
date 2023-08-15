@@ -6,6 +6,7 @@ module HexletCode
   autoload :Base, 'hexlet_code/components/base'
   autoload :Input, 'hexlet_code/components/input'
   autoload :Text, 'hexlet_code/components/text'
+  autoload :Label, 'hexlet_code/components/label'
 
   class FormBuilder
     def initialize(model, attributes)
@@ -18,7 +19,8 @@ module HexletCode
       value = @model.public_send(name) || ''
       tag = attributes.fetch(:as, :input)
       tag_class = "HexletCode::#{tag.to_s.capitalize}".constantize
-      @components << tag_class.new(name:, value:, **attributes.except(:as))
+      @components.push Label.new(name: nil, value: name.capitalize, for: name),
+                       tag_class.new(name:, value:, **attributes.except(:as))
     end
 
     def submit(value = 'Save', attributes = {})
